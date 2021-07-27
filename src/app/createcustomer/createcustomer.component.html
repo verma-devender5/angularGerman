@@ -1,0 +1,210 @@
+   <!-- Start Content-->
+   <div class="container-fluid">
+
+     <!-- start page title -->
+     <div class="row">
+       <div class="col-12">
+         <div class="page-title-box" style="height: 20px !important;">
+
+
+         </div>
+       </div>
+     </div>
+     <!-- end page title -->
+
+
+
+     <div class="row">
+       <div class="col-sm-12">
+         <div class="card">
+           <div class="card-body">
+
+
+             <h4 class="header-title mb-4">Create Customer</h4>
+             <div *ngIf="isSaved" class="alert alert-success alert-dismissible" role="alert">
+               A simple success alert with <a href="ui-components.html#" class="alert-link">an example link</a>. Give it
+               a click
+               if you like.
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <form [formGroup]='form' (ngSubmit)="onSubmit()" novalidate>
+               <div>{{form.value | json}}</div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label for="userName">Branch*</label>
+                     <select #branch class="form-control" formControlName="branch"
+                       (change)="selectChange(branch.value)">
+                       <option *ngFor="let item of branches" [value]="item.id">{{item.name}}</option>
+                     </select>
+                     <div *ngIf="(submitted && f.branch.invalid) ||(f.branch.dirty || f.branch.touched)">
+                       <div [hidden]="!f.branch.errors?.required" class="invalidControl">Please select branch</div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="col-xl-6">
+                   <div class="form-group" *ngIf="branch.value=='5'">
+                     <label>Others*</label>
+                     <input type="text" formControlName="otherbranch" placeholder="Mention Other" class="form-control">
+                     <div *ngIf="form.controls.otherbranch.hasError('required')">
+                       <div [hidden]="!f.otherbranch.errors?.required" class="invalidControl">Please select branch</div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label> {{'street' | translate }}*</label>
+                     <input formControlName="street" placeholder="Enter Street" class="form-control">
+                     <div *ngIf="(submitted && f.street.invalid) ||(f.street.dirty || f.street.touched)">
+                       <div [hidden]="!f.street.errors?.required" class="invalidControl">
+                         {{'pleaseEnterStreet' | translate }}</div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label> {{'houseNumber' | translate }}*</label>
+                     <input formControlName="houseNumber" placeholder="Enter House Number" class="form-control">
+                     <div *ngIf="(submitted && f.houseNumber.invalid) ||(f.houseNumber.dirty || f.houseNumber.touched)">
+                       <div [hidden]="!f.houseNumber.errors?.required" class="invalidControl">
+                         {{'pleaseEnterHouseNumber' | translate }}
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label> {{'postalCode' | translate }}*</label>
+                     <input formControlName="postalCode" placeholder="Enter Postal Code" class="form-control">
+                     <div *ngIf="(submitted && f.postalCode.invalid) ||(f.postalCode.dirty || f.postalCode.touched)">
+                       <div [hidden]="!f.postalCode.errors?.required" class="invalidControl">Please enter postal code
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label> {{'city' | translate }}*</label>
+                     <input formControlName="city" placeholder="{{'city' | translate }}" class="form-control">
+                     <div *ngIf="(submitted && f.city.invalid) ||(f.city.dirty || f.city.touched)">
+                       <div [hidden]="!f.city.errors?.required" class="invalidControl">
+                         {{'pleaseEnterCity' | translate }} </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label>Owner*</label>
+                     <input formControlName="owner" placeholder="Enter Owner" class="form-control">
+                     <div *ngIf="(submitted && f.owner.invalid) ||(f.owner.dirty || f.owner.touched)">
+                       <div [hidden]="!f.owner.errors?.required" class="invalidControl">Please enter owner </div>
+                     </div>
+                   </div>
+                 </div>
+
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label>Email*</label>
+                     <input formControlName="email" placeholder="Enter email" class="form-control">
+                     <div *ngIf="(submitted && f.email.invalid) ||(f.email.dirty || f.email.touched)">
+                       <div [hidden]="!f.email.errors?.required" class="invalidControl">Please enter email </div>
+                       <div [hidden]="!f.email.errors?.email" class="invalidControl">Please enter valid email </div>
+                     </div>
+                   </div>
+                 </div>
+
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label>Telephone*</label>
+                     <input formControlName="telephone" placeholder="Enter Telephone" class="form-control">
+                     <div *ngIf="(submitted && f.telephone.invalid) ||(f.telephone.dirty || f.telephone.touched)">
+                       <div [hidden]="!f.telephone.errors?.required" class="invalidControl">Please enter telephone
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label>Fax*</label>
+                     <input formControlName="fax" placeholder="Enter Fax" class="form-control">
+                     <div *ngIf="(submitted && f.fax.invalid) ||(f.fax.dirty || f.fax.touched)">
+                       <div [hidden]="!f.fax.errors?.required" class="invalidControl">Please enter fax </div>
+                     </div>
+                   </div>
+                 </div>
+
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label>Homepage*</label>
+                     <input formControlName="homePage" placeholder="Enter Homepage" class="form-control">
+                     <div *ngIf="(submitted && f.homePage.invalid) ||(f.homePage.dirty || f.homePage.touched)">
+                       <div [hidden]="!f.homePage.errors?.required" class="invalidControl">Please enter home page </div>
+                     </div>
+                   </div>
+                 </div>
+
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label>Notaion*</label>
+                     <input formControlName="notations" placeholder="Enter Notation" class="form-control">
+                     <div *ngIf="(submitted && f.notations.invalid) ||(f.notations.dirty || f.notations.touched)">
+                       <div [hidden]="!f.notations.errors?.required" class="invalidControl">Please enter notations
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+
+               </div>
+               <div class="row">
+                 <div class="col-xl-12">
+                   <div class="form-group">
+                     <div class="checkbox">
+                       <input id="remember-1" type="checkbox">
+                       <label for="remember-1"> Remember me </label>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class="form-group text-right mb-0">
+                 <button class="btn btn-primary float-right">
+                   <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-1"></span>
+
+                   Submit</button>
+
+                 <button type="reset" class="btn btn-link text-danger ml-1">
+                   Cancel
+                 </button>
+               </div>
+
+             </form>
+           </div>
+         </div>
+       </div><!-- end col -->
+
+
+     </div>
+
+
+
+
+   </div> <!-- end content -->

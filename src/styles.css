@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+.navbar-custom {
+  background-color: #0dcaf0 !important;
+}
+.btn-primary {
+  background-color: #0dcaf0 !important;
+  border-color: #0dcaf0 !important;
+}
+#sidebar-menu > ul > li > a.active {
+  color: #0dcaf0 !important;
+}
+#sidebar-menu > ul > li > a:active,
+#sidebar-menu > ul > li > a:focus,
+#sidebar-menu > ul > li > a:hover {
+  color: #0dcaf0 !important;
+  text-decoration: none;
+}

@@ -1,0 +1,9 @@
+{
+  "street": "Straße",
+  "houseNumber": "Hausnummer",
+  "city": "Stadt",
+  "postalCode": "Postleitzahl",
+  "pleaseEnterCity": "Bitte Stadt eingeben",
+  "pleaseEnterStreet": "Bitte Straße eingeben",
+  "pleaseEnterHouseNumber": "bitte Hausnummer eingeben"
+}

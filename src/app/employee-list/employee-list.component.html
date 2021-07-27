@@ -1,0 +1,113 @@
+ <!-- Start Content-->
+ <div class="container-fluid">
+
+   <!-- start page title -->
+   <div class="row">
+     <div class="col-12">
+       <div class="page-title-box" style="height: 20px !important;">
+
+
+       </div>
+     </div>
+   </div>
+   <!-- end page title -->
+   <div class="row">
+     <div class="col-xl-4">
+       <div class="card">
+         <div class="card-body">
+           <h4 class="header-title mb-4">Inbox</h4>
+           <div>
+             <input type="text" [(ngModel)]="searchText" placeholder="Search user...." class="form-control">
+           </div>
+           <div *ngIf="(userList | userFilter: searchText).length > 0; else noResults" class="inbox-widget slimscroll"
+             style=" max-height:250px;
+             overflow-y:auto; ">
+             <div *ngIf="isLoading" class="bd-example">
+               <button class="btn btn-primary" type="button" disabled>
+                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                 Loading...
+               </button>
+
+             </div>
+
+             <input type="hidden" #localid>
+             <div class="inbox-item" *ngFor="let user of userList|userFilter: searchText; let i=index">
+
+               <div class="inbox-item-img">
+
+                 <button (click)="openModal()" style="color: skyblue;" class="rounded-circle">
+                   {{user.firstName | titlecase}}</button>
+               </div>
+               <a href="#">
+                 <h5 style="color: deepskyblue !important;" class="inbox-item-author font-14 m-0">
+                   {{user.firstName | titlecase}} {{user.lastName | titlecase}}
+                 </h5>
+               </a>
+
+               <p class="inbox-item-text text-truncate">{{user.email}}</p>
+               <p class="inbox-item-date">
+
+                 <mat-icon aria-hidden="false" [ngClass]="user.uid==localid.value?'activeIcon':'inactiveicon'"
+                   (click)="getCustomerList(user.uid);localid.value=user.uid" style="cursor: pointer;"
+                   aria-label="Example home icon">
+                   arrow_forward_ios
+                 </mat-icon>
+
+
+               </p>
+             </div>
+
+
+           </div>
+         </div>
+       </div>
+     </div><!-- end col -->
+
+     <div class="col-xl-8">
+       <div class="card">
+         <div class="card-body">
+
+           <h4 class="header-title mb-4">Latest Projects</h4>
+           <div *ngIf="isLoadingCustomer" class="bd-example">
+             <button class="btn btn-primary" type="button" disabled>
+               <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+               Loading...
+             </button>
+
+           </div>
+           <div class="table-responsive">
+             <table class="table mb-0 table-nowrap">
+               <thead>
+                 <tr>
+                   <th>#</th>
+                   <th>Project Name</th>
+                   <th>Start Date</th>
+                   <th>Due Date</th>
+                   <th>Status</th>
+                   <th>Assign</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr *ngFor="let customer of customerList; let i=index">
+                   <td>{{i+1}}</td>
+                   <td>{{customer.email}}</td>
+                   <td>01/01/2016</td>
+                   <td>26/04/2016</td>
+                   <td><span class="badge badge-danger">Released</span></td>
+                   <td>Coderthemes</td>
+                 </tr>
+
+
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+     </div><!-- end col -->
+
+   </div>
+   <!-- end row -->
+ </div>
+ <ng-template #noResults>
+   <p>No results found for "{{searchText}}".</p>
+ </ng-template>

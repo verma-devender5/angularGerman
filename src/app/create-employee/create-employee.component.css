@@ -1,0 +1,42 @@
+.invalidControl {
+  color: red;
+}
+.rounded-circle {
+  border: 1px solid #ececec !important;
+  padding: 5px 11px !important;
+}
+.matIcon {
+  color: #ececec;
+}
+.activeIcon {
+  color: skyblue;
+}
+.inactiveicon {
+  color: #ececec;
+}
+.bd-example {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+.norecord {
+  margin: 10px;
+  text-align: center;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  overflow-y: scroll;
+  background: lightgrey;
+  box-shadow: inset 0 0 4px #707070;
+}
+
+::-webkit-scrollbar-thumb {
+  background: skyblue;
+  border-radius: 10px;
+}

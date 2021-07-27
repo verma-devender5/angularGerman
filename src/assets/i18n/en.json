@@ -1,0 +1,9 @@
+{
+  "street": "Street",
+  "houseNumber": "House Number",
+  "city": "City",
+  "postalCode": "Postal Code",
+  "pleaseEnterCity": "Please enter city",
+  "pleaseEnterStreet": "Please enter street",
+  "pleaseEnterHouseNumber": "Please enter house number"
+}

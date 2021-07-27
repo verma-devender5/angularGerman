@@ -1,0 +1,279 @@
+  <!-- Topbar Start -->
+  <div class="navbar-custom">
+
+    <ul class="list-unstyled topnav-menu float-right mb-0">
+      <li style="display: none;"> <select class="form-control" #selectedLang (change)="switchLang(selectedLang.value)">
+          <option *ngFor="let language of translate.getLangs()" [value]="language"
+            [selected]="language === translate.currentLang">
+            {{ language }}
+          </option>
+        </select></li>
+      <li style="display: none;" class="dropdown ">
+        <a class="nav-link dropdown-toggle mr-0" data-toggle="dropdown" href="layouts-vertical.html#" role="button"
+          aria-haspopup="false" aria-expanded="false">
+          <img src="assets/images/flags/us.jpg" alt="user-image" class="mr-2" height="12"> <span
+            class="align-middle">English <i class="mdi mdi-chevron-down"></i> </span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <img src="assets/images/flags/germany.jpg" alt="user-image" class="mr-2" height="12"> <span
+              class="align-middle">German</span>
+          </a>
+
+
+        </div>
+      </li>
+
+      <li style="display: none;" class="dropdown notification-list">
+        <a class="nav-link dropdown-toggle  waves-effect waves-light" data-toggle="dropdown"
+          href="layouts-vertical.html#" role="button" aria-haspopup="false" aria-expanded="false">
+          <i class="mdi mdi-bell-outline noti-icon"></i>
+          <div class="noti-dot">
+            <span class="dot"></span>
+            <span class="pulse"></span>
+          </div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+          <!-- item-->
+          <div class="dropdown-item noti-title">
+            <h5 class="font-16 m-0">
+              <span class="float-right">
+                <a href="layouts-vertical.html" class="text-dark">
+                  <small>Clear All</small>
+                </a>
+              </span>Notification
+            </h5>
+          </div>
+
+          <div class="slimscroll noti-scroll">
+
+            <!-- item-->
+            <a href="javascript:void(0);" class="dropdown-item notify-item">
+              <div class="notify-icon bg-soft-primary text-primary">
+                <i class="mdi mdi-comment-account-outline"></i>
+              </div>
+              <p class="notify-details">Caleb Flakelar commented on Admin
+                <small class="noti-time">1 min ago</small>
+              </p>
+            </a>
+
+            <!-- item-->
+            <a href="javascript:void(0);" class="dropdown-item notify-item">
+              <div class="notify-icon bg-soft-success text-success">
+                <i class="mdi mdi-account-plus"></i>
+              </div>
+              <p class="notify-details">New user registered.
+                <small class="noti-time">5 hours ago</small>
+              </p>
+            </a>
+
+            <!-- item-->
+            <a href="javascript:void(0);" class="dropdown-item notify-item">
+              <div class="notify-icon bg-soft-danger text-danger">
+                <i class="mdi mdi-comment-account-outline"></i>
+              </div>
+              <p class="notify-details">Herbert Lim commented on Admin
+                <small class="noti-time">13 days ago</small>
+              </p>
+            </a>
+
+            <!-- item-->
+            <a href="javascript:void(0);" class="dropdown-item notify-item">
+              <div class="notify-icon bg-soft-secondary text-muted">
+                <i class="mdi mdi-heart"></i>
+              </div>
+              <p class="notify-details">Carlos Crouch liked
+                <b>Admin</b>
+                <small class="noti-time">13 days ago</small>
+              </p>
+            </a>
+          </div>
+
+          <!-- All-->
+          <a href="javascript:void(0);" class="dropdown-item text-primary notify-item notify-all">
+            View all
+            <i class="fi-arrow-right"></i>
+          </a>
+
+        </div>
+      </li>
+
+      <li style="display: none;" class="dropdown notification-list">
+        <a class="nav-link dropdown-toggle  waves-effect waves-light" data-toggle="dropdown"
+          href="layouts-vertical.html#" role="button" aria-haspopup="false" aria-expanded="false">
+          <i class="mdi mdi-email-outline noti-icon"></i>
+          <span class="badge badge-danger rounded-circle noti-icon-badge">5</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+          <!-- item-->
+          <div class="dropdown-item noti-title">
+            <h5 class="font-16 m-0">
+              <span class="float-right">
+                <a href="layouts-vertical.html" class="text-dark">
+                  <small>Clear All</small>
+                </a>
+              </span>Messages
+            </h5>
+          </div>
+
+          <div class="slimscroll noti-scroll">
+
+            <!-- item-->
+            <a href="javascript:void(0);" class="dropdown-item notify-item">
+              <div class="notify-icon">
+                <img src="assets/images/users/avatar-1.jpg" class="img-fluid rounded-circle" alt="" />
+              </div>
+              <p class="notify-details">James Smith</p>
+              <p class="mb-0 user-msg text-truncate">
+                <small>Hi, How are you? What about our next meeting</small>
+              </p>
+            </a>
+
+            <!-- item-->
+            <a href="javascript:void(0);" class="dropdown-item notify-item">
+              <div class="notify-icon">
+                <img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" />
+              </div>
+              <p class="notify-details">Paul Ocasio</p>
+              <p class="mb-0 user-msg text-truncate">
+                <small>Wow ! this admin looks good and awesome design</small>
+              </p>
+            </a>
+
+            <!-- item-->
+            <a href="javascript:void(0);" class="dropdown-item notify-item">
+              <div class="notify-icon">
+                <img src="assets/images/users/avatar-5.jpg" class="img-fluid rounded-circle" alt="" />
+              </div>
+              <p class="notify-details">Thomas Davis</p>
+              <p class="mb-0 user-msg text-truncate">
+                <small>This theme is awesome!</small>
+              </p>
+            </a>
+
+            <!-- item-->
+            <a href="javascript:void(0);" class="dropdown-item notify-item">
+              <div class="notify-icon">
+                <img src="assets/images/users/avatar-6.jpg" class="img-fluid rounded-circle" alt="" />
+              </div>
+              <p class="notify-details">Devon Laskey</p>
+              <p class="mb-0 user-msg text-truncate">
+                <small>Nice to meet you</small>
+              </p>
+            </a>
+
+            <!-- item-->
+            <a href="javascript:void(0);" class="dropdown-item notify-item">
+              <div class="notify-icon">
+                <img src="assets/images/users/avatar-7.jpg" class="img-fluid rounded-circle" alt="" />
+              </div>
+              <p class="notify-details">Felipe Hall</p>
+              <p class="mb-0 user-msg text-truncate">
+                <small>I've finished it! See you so...</small>
+              </p>
+            </a>
+
+          </div>
+
+          <!-- All-->
+          <a href="javascript:void(0);" class="dropdown-item text-primary notify-item notify-all">
+            View all
+            <i class="fi-arrow-right"></i>
+          </a>
+
+        </div>
+      </li>
+
+      <li *ngIf="userInfo  as user" class="dropdown notification-list">
+
+        <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
+          href="layouts-vertical.html#" role="button" aria-haspopup="false" aria-expanded="false">
+          <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+        </a>
+        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+          <!-- item-->
+          <div class="dropdown-header noti-title">
+            <h6 class="text-overflow m-0">Welcome !{{user.email}}</h6>
+          </div>
+
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <i class="mdi mdi-account-outline"></i>
+            <span>Profile :</span>
+          </a>
+
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <i class="mdi mdi-settings-outline"></i>
+            <span>Settings</span>
+          </a>
+
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <i class="mdi mdi-lock-outline"></i>
+            <span>Lock Screen</span>
+          </a>
+
+          <div class="dropdown-divider"></div>
+
+          <!-- item-->
+          <a href="#" (click)="logout()" class="dropdown-item notify-item">
+            <i class="mdi mdi-logout-variant"></i>
+            <span>Logout</span>
+          </a>
+
+        </div>
+      </li>
+
+      <li class="dropdown notification-list">
+        <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
+          <i class="mdi mdi-settings-outline noti-icon"></i>
+        </a>
+      </li>
+
+
+    </ul>
+
+    <!-- LOGO -->
+    <div class="logo-box">
+      <a href="index.html" class="logo text-center">
+        <span class="logo-lg">
+          <img src="assets/images/logo-light.png" alt="" height="16">
+          <!-- <span class="logo-lg-text-light">Flacto</span> -->
+        </span>
+        <span class="logo-sm">
+          <!-- <span class="logo-sm-text-dark">F</span> -->
+          <img src="assets/images/logo-sm.png" alt="" height="22">
+        </span>
+      </a>
+    </div>
+
+    <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+      <li>
+        <button (click)="sidebarEnable()" class="button-menu-mobile waves-effect waves-light">
+          <i class="mdi mdi-menu"></i>
+        </button>
+      </li>
+
+      <li style="display: none;" class="">
+        <form class="app-search">
+          <div class="app-search-box">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search...">
+              <div class="input-group-append">
+                <button class="btn" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </li>
+
+
+    </ul>
+  </div>
+  <!-- end Topbar -->
