@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IUser } from 'src/app/Interface/User/IUser';
+import { NotificationService } from 'src/app/notification.service';
 import { AuthService } from 'src/app/Service/Auth/auth.service';
 import { TokenStorageService } from 'src/app/Service/Auth/token-storage.service';
+import { AuthMainService } from 'src/app/Service/AuthService/auth-main.service';
+import { EncryptionService } from 'src/app/Service/EncryptionService/encryption.service';
 
 @Component({
   selector: 'app-register',
@@ -26,14 +29,15 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private tokenStorage: TokenStorageService
+    private notification: NotificationService,
+    private encrypt: EncryptionService
   ) {}
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
-    }
+    // const encrypted = this.encrypt.encryptionAES('structurEmployee');
+    // const decrypted = this.encrypt.decryptionAES(encrypted);
+    // console.log(encrypted);
+    // console.log(decrypted);
     this.validateLoginForm();
   }
   get f() {
@@ -43,36 +47,51 @@ export class RegisterComponent implements OnInit {
   validateLoginForm() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(16),
+        ],
+      ],
+      secretKey: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required, Validators.minLength(3)]],
     });
   }
-  reloadPage(): void {
-    window.location.reload();
-  }
+
+  resetForm = () => {
+    // this.loginForm.setValue({ email: '', password: '', secretKey: '' });
+    this.loginForm.reset();
+  };
   onSubmit = () => {
+    this.submitted = true;
+
     if (this.loginForm.invalid) {
       return;
     }
+    const encrypted = this.loginForm.get('secretKey')?.value;
+    console.log(encrypted);
+    const decrypted = this.encrypt.decryptionAES(encrypted);
+    console.log(decrypted);
+    if (decrypted != 'structurEmployee') {
+      this.notification.showError('Wrong secret key', 'Error');
+      return;
+    }
+
     let email = this.loginForm.get('email')?.value;
     let password = this.loginForm.get('password')?.value;
-    console.log(email + ' : ' + password);
+    let firstName = this.loginForm.get('firstName')?.value;
+    let lastName = this.loginForm.get('lastName')?.value;
     this.authService
-      .SignUpNew(email, password)
+      .SignUpNew(email, password, firstName, lastName)
       .then((res) => {
-        console.log(res);
+        this.resetForm();
       })
       .catch((error) => {
-        console.error(error);
-      });
-  };
-  onSubmitreg = () => {
-    this.authService
-      .SignUp('monty2@gmail.com', '1234567')
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.error(error);
+        //console.error(error);
+        //this.notification.showError('Some error occurred.', 'Error');
       });
   };
 }

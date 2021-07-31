@@ -11,14 +11,20 @@ import { TokenStorageService } from './Service/Auth/token-storage.service';
 export class AppComponent {
   private roles: string[] = [];
   @ViewChild(RouterOutlet) outlet!: RouterOutlet;
-
+  currentLanguage: any = 'de';
   constructor(
     private tokenStorageService: TokenStorageService,
     private router: Router,
     public translate: TranslateService
   ) {
     translate.addLangs(['en', 'de']);
-    translate.setDefaultLang('en');
+    if (window.localStorage.getItem('language') != null) {
+      this.currentLanguage = window.localStorage.getItem('language');
+      translate.setDefaultLang(this.currentLanguage);
+    } else {
+      window.localStorage.setItem('language', 'de');
+      translate.setDefaultLang('de');
+    }
   }
 
   ngOnInit(): void {

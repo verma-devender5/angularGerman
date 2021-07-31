@@ -1,0 +1,69 @@
+{
+  "login": {
+    "street": "Straße",
+    "houseNumber": "Hausnummer",
+    "city": "Stadt",
+    "postalCode": "Postleitzahl",
+    "pleaseEnterCity": "Bitte Stadt eingeben",
+    "pleaseEnterStreet": "Bitte Straße eingeben",
+    "pleaseEnterHouseNumber": "bitte Hausnummer eingeben",
+    "enterYourEmail": "Geben sie ihre E-Mail Adresse ein",
+    "enterYourPassword": "Geben Sie Ihr Passwort ein",
+    "emailIsRequired": "E-Mail ist erforderlich",
+    "passwordIsRequired": "Passwort wird benötigt",
+    "emailIsInvalid": "E-Mail ist ungültig",
+    "signIn": "EINLOGGEN",
+    "logIn": "Anmeldung",
+    "userNotFound": "Benutzer nicht gefunden",
+
+    "wrongUserNamePassword": "Falscher Benutzername oder falsches Passwort",
+    "accountDisabled": "Dieses Konto ist deaktiviert, bitte kontaktieren Sie den Administrator",
+    "toManyWrongAttempts": "Ihr Konto wurde aufgrund mehrerer falscher Versuche deaktiviert",
+    "error": "Error",
+    "success": "Erfolg"
+
+  },
+  "signup": {
+    "enterYourFirstName": "Geben Sie Ihren Vornamen ein",
+    "enterYourLastName": "Geben Sie Ihren Nachnamen ein",
+    "firstNameIsRequired": "Vorname ist erforderlich",
+    "lastNameIsRequired": "Nachname ist erforderlich",
+    "enterYourSecretKey": "Geheimen Schlüssel eingeben",
+    "secretKeyIsRequired": "Geheimer Schlüssel ist erforderlich",
+    "signUp": "ANMELDEN",
+    "signUpS": "Anmeldung",
+    "emailAlreadyInUse": "E-Mail wird bereits verwendet",
+    "userCreatedSuccessfully": "Benutzer erfolgreich erstellt"
+
+  },
+  "myprofile": {
+    "firstName": "Vorname",
+    "lastName": "Vorname",
+    "dateOfBirth": "Geburtsdatum",
+    "email": "Email",
+    "telephone": "Telefon",
+    "fax": "Fax",
+    "numberOfIdentityCard": "Personalausweisnummer",
+    "companyRegistrationNumber": "Handelsregisternummer",
+    "companyOrPrivateAddress": "Firmen- oder Wohnadresse",
+    "assignedPostLAddress": "Zugeteilte Postleitzahlenbereiche",
+    "homePage": "Homepage",
+    "dateOfBirthRequired": "Date of birth required.",
+    "telephoneRequired": "Telephone is required",
+    "faxRequired": "Fax is required.",
+    "numberOfIdentityCardRequired": "Number of Identity Card required",
+    "companyRegistrationNumberRequired": "Company Registration Number required",
+    "companyOrPrivateAddressRequired": "company or Private Address required",
+    "assignedPostLAddressRequired": "Assigned Postal Address required",
+    "homePageRequired": "Home Page",
+    "updateProfile": "Profil aktualisieren",
+    "cancel": "Stornieren",
+    "required": "Erforderlich",
+    "personalData": "Persönliche Daten"
+  },
+  "sidebar": {
+    "createCustomer": "Kunden anlegen",
+    "viewCustomer": "Kontaktliste",
+    "personalInfo": "Persönliche Daten"
+  }
+}

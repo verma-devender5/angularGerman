@@ -1,0 +1,47 @@
+.statusCircleRed {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background: red;
+}
+.statusCircleGreen {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background: green;
+}
+.statusCircleOrange {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background: orangered;
+}
+.statusCircleEmpty {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: 1px solid grey;
+}
+.bd-example {
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  border-width: 1px;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table th {
+  color: #212529bf;
+  font-size: 15px;
+  font-weight: 500;
+}
+.table td {
+  font-size: 14px;
+}

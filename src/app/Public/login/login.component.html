@@ -1,48 +1,49 @@
 <div class="account-pages my-5 pt-md-5">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6 col-xl-5">
+      <div class="col-md-8 col-lg-6 col-xl-6 col-sm-12 col-xs-12">
         <div class="text-center pb-1">
           <a href="index.html">
-            <span><img src="assets/images/logo.png" alt="" height="18"></span>
+            <span><img src="assets/images/logo.jpg" alt="" height="138"></span>
           </a>
-          <h5 class="font-14 text-muted mt-3">heading</h5>
+          <h5 class="font-14 text-muted mt-3"></h5>
         </div>
         <div class="card mt-4">
 
           <div class="card-body p-4">
             <div class="text-center mb-4">
-              <h5 class="text-uppercase">Sign In</h5>
+              <h5 class="text-uppercase">{{'login.signIn' | translate }}</h5>
             </div>
 
             <form [formGroup]='loginForm' (ngSubmit)="onSubmit()" class="p-2">
 
               <div class="form-group mb-3">
-                <input class="form-control" formControlName="email" type="email" placeholder="Enter your email">
+                <input class="form-control" formControlName="email" type="email"
+                  placeholder="{{'login.enterYourEmail' | translate }}">
                 <div *ngIf="(submitted && f.email.invalid) ||(f.email.dirty || f.email.touched)">
-                  <div [hidden]="!f.email.errors?.required" class="invalidControl">Email is required</div>
-                  <div [hidden]="!f.email.errors?.email" class="invalidControl">Email is invalid</div>
+                  <div [hidden]="!f.email.errors?.required" class="invalidControl">
+                    {{'login.emailIsRequired' | translate }}</div>
+                  <div [hidden]="!f.email.errors?.email" class="invalidControl">
+                    {{'login.passwordIsRequired' | translate }}
+                  </div>
                 </div>
               </div>
 
               <div class="form-group mb-3">
                 <input class="form-control" formControlName="password" type="password"
-                  placeholder="Enter your password">
+                  placeholder="{{'login.enterYourPassword' | translate }}">
                 <div *ngIf="(submitted && f.password.invalid) ||(f.password.dirty || f.password.touched)">
-                  <div [hidden]="!f.password.errors?.required" class="invalidControl">Password is required</div>
+                  <div [hidden]="!f.password.errors?.required" class="invalidControl">
+                    {{'login.passwordIsRequired' | translate }}</div>
                 </div>
               </div>
 
-              <div class="form-group mb-3">
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="checkbox-signin">
-                  <label class="custom-control-label" for="checkbox-signin">Remember me</label>
-                </div>
-              </div>
+
 
               <div class="form-group mb-4">
                 <button class="btn btn-primary btn-bordered-primary btn-block waves-effect waves-light" type="submit">
-                  Log In </button>
+                  <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-1"></span>
+                  {{'login.logIn' | translate }}</button>
               </div>
 
 

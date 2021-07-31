@@ -9,38 +9,29 @@
           <ul class="metismenu" id="side-menu">
 
             <li class="menu-title">Navigation</li>
-            <li *ngIf="isAdmin">
-              <a [routerLink]="['/admin/createemployee']" routerLinkActive="active" class="waves-effect"> <i
-                  class="fas fa-user-tie"></i>
-                <span> Create Employee </span></a>
 
-            </li>
             <li *ngIf="isAdmin">
               <a [routerLink]="['/admin/employees']" routerLinkActive="active" class="waves-effect"> <i
                   class="fas fa-users"></i>
                 <span> Employees List </span></a>
 
             </li>
-            <li *ngIf="isAdmin">
-              <a [routerLink]="['/admin/employeedetail']" routerLinkActive="active" class="waves-effect"> <i
-                  class="fas fa-user"></i>
-                <span> Employee Detail </span></a>
 
-            </li>
             <li *ngIf="isUser">
-              <a [routerLink]="['/user/createcustomer']" routerLinkActive="active" class="waves-effect"> <i
+              <a [routerLink]="['/employee/createcustomer']" routerLinkActive="active" class="waves-effect"> <i
                   class="fas fa-user-tie"></i>
-                <span> Create Customer </span></a>
+                <span> {{'sidebar.createCustomer'| translate}}</span></a>
 
             </li>
-            <li *ngIf="isUser"> <a [routerLink]="['/user/customers']" routerLinkActive="active" class="waves-effect">
+            <li *ngIf="isUser"> <a [routerLink]="['/employee/viewcustomer']" routerLinkActive="active"
+                class="waves-effect">
                 <i class="fas fa-users"></i>
-                <span> View Customers </span></a>
+                <span> {{'sidebar.viewCustomer'| translate}} </span></a>
 
             </li>
-            <li *ngIf="isUser"><a [routerLink]="['/user/personalinfo']" routerLinkActive="active" class="waves-effect">
+            <li *ngIf="isUser"><a [routerLink]="['/employee/myprofile']" routerLinkActive="active" class="waves-effect">
                 <i class="fas fa-user"></i>
-                <span> Personal Info </span></a>
+                <span>{{'sidebar.personalInfo'| translate}} </span></a>
 
             </li>
 

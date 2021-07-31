@@ -1,0 +1,198 @@
+   <!-- Start Content-->
+   <div class="container-fluid">
+
+     <!-- start page title -->
+     <div class="row">
+       <div class="col-12">
+         <div class="page-title-box" style="height: 20px !important;">
+
+
+         </div>
+       </div>
+     </div>
+     <!-- end page title -->
+
+
+
+     <div class="row">
+       <div class="col-sm-12 col-xs-12 col-md-12">
+         <div class="card">
+           <div class="card-body">
+             <h4 class="header-title mb-4">{{'myprofile.personalData'| translate}}</h4>
+             <div *ngIf="isLoading" class="bd-example">
+               <button class="btn btn-primary" type="button" disabled>
+                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                 Loading...
+               </button>
+
+             </div>
+             <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+               <div class="row">
+
+                 <div class="row">
+                   <div class="col-xl-6">
+                     <div class="form-group">
+                       <label>{{'myprofile.firstName'| translate}}<span>*</span></label>
+                       <input type="text" formControlName="firstName" placeholder="{{'myprofile.firstName'| translate}}"
+                         class="form-control">
+                       <div *ngIf="(submitted && f.firstName.invalid) ||(f.firstName.dirty || f.firstName.touched)">
+                         <div [hidden]="!f.firstName.errors?.required" class="invalidControl">
+                           {{'myprofile.required'| translate}} </div>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xl-6">
+                     <div class="form-group">
+                       <label>{{'myprofile.lastName'| translate}}<span>*</span></label>
+                       <input type="text" formControlName="lastName" placeholder="{{'myprofile.lastName'| translate}}"
+                         class="form-control">
+                       <div *ngIf="(submitted && f.lastName.invalid) ||(f.lastName.dirty || f.lastName.touched)">
+                         <div [hidden]="!f.lastName.errors?.required" class="invalidControl">
+                           {{'myprofile.required'| translate}}</div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-xl-6">
+                     <div>
+                       <div class="form-group">
+                         <label>{{'myprofile.dateOfBirth'| translate}}<span>*</span></label>
+                         <input type="text" placeholder="Datepicker" formControlName="dateOfBirth" class="form-control"
+                           bsDatepicker [bsConfig]="{ isAnimated: true,containerClass:'theme-default' }">
+                       </div>
+
+                       <div
+                         *ngIf="(submitted && f.dateOfBirth.invalid) ||(f.dateOfBirth.dirty || f.dateOfBirth.touched)">
+                         <div [hidden]="!f.dateOfBirth.errors?.required" class="invalidControl">
+                           {{'myprofile.required'| translate}}
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xl-6">
+                     <div class="form-group">
+                       <label>{{'myprofile.email'| translate}}<span>*</span></label>
+                       <input type="text" formControlName="email" placeholder="{{'myprofile.email'| translate}}"
+                         class="form-control">
+
+                     </div>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-xl-6">
+                     <div class="form-group">
+                       <label>{{'myprofile.telephone'| translate}}<span>*</span></label>
+                       <input type="text" formControlName="telephone" placeholder="{{'myprofile.telephone'| translate}}"
+                         class="form-control">
+                       <div *ngIf="(submitted && f.telephone.invalid) ||(f.telephone.dirty || f.telephone.touched)">
+                         <div [hidden]="!f.telephone.errors?.required" class="invalidControl">
+                           {{'myprofile.required'| translate}} </div>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xl-6">
+                     <div class="form-group">
+                       <label>{{'myprofile.fax'| translate}}<span>*</span></label>
+                       <input type="text" formControlName="fax" placeholder="{{'myprofile.fax'| translate}}"
+                         class="form-control">
+                       <div *ngIf="(submitted && f.fax.invalid) ||(f.fax.dirty || f.fax.touched)">
+                         <div [hidden]="!f.fax.errors?.required" class="invalidControl">
+                           {{'myprofile.required'| translate}}</div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-xl-6">
+                     <div class="form-group">
+                       <label>{{'myprofile.numberOfIdentityCard'| translate}}<span>*</span></label>
+                       <input type="text" formControlName="numberOfIdentityCard"
+                         placeholder="{{'myprofile.telephone'| translate}}" class="form-control">
+                       <div *ngIf="(submitted && f.numberOfIdentityCard.invalid) ||(f.numberOfIdentityCard.dirty ||
+                         f.numberOfIdentityCard.touched)">
+                         <div [hidden]="!f.numberOfIdentityCard.errors?.required" class="invalidControl">
+                           {{'myprofile.required'| translate}} </div>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xl-6">
+                     <div class="form-group">
+                       <label>{{'myprofile.companyRegistrationNumber'| translate}}<span>*</span></label>
+                       <input type="text" formControlName="companyRegistrationNumber"
+                         placeholder="{{'myprofile.companyRegistrationNumber'| translate}}" class="form-control">
+                       <div *ngIf="(submitted && f.companyRegistrationNumber.invalid) ||(f.companyRegistrationNumber.dirty
+                         || f.companyRegistrationNumber.touched)">
+                         <div [hidden]="!f.companyRegistrationNumber.errors?.required" class="invalidControl">
+                           {{'myprofile.required'| translate}} </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-xl-12">
+                     <div class="form-group">
+                       <label>{{'myprofile.companyOrPrivateAddress'| translate}}<span>*</span></label>
+                       <input type="text" formControlName="companyOrPrivateAddress"
+                         placeholder="{{'myprofile.companyOrPrivateAddress'| translate}}" class="form-control">
+                       <div *ngIf="(submitted && f.companyOrPrivateAddress.invalid) ||(f.companyOrPrivateAddress.dirty ||
+                         f.companyOrPrivateAddress.touched)">
+                         <div [hidden]="!f.companyOrPrivateAddress.errors?.required" class="invalidControl">
+                           {{'myprofile.required'| translate}} </div>
+                       </div>
+                     </div>
+                   </div>
+
+                 </div>
+                 <div class="row">
+                   <div class="col-xl-6">
+                     <div class="form-group">
+                       <label>{{'myprofile.homePage'| translate}}<span>*</span></label>
+                       <input type="text" formControlName="homePage" placeholder="{{'myprofile.homePage'| translate}}"
+                         class="form-control">
+                       <div *ngIf="(submitted && f.homePage.invalid) ||(f.homePage.dirty || f.homePage.touched)">
+                         <div [hidden]="!f.homePage.errors?.required" class="invalidControl">
+                           {{'myprofile.required'| translate}} </div>
+                       </div>
+                     </div>
+                   </div>
+                   <div class="col-xl-6">
+                     <div class="form-group">
+                       <label>{{'myprofile.assignedPostLAddress'| translate}}<span>*</span></label>
+                       <input type="text" formControlName="assignedPostalCode"
+                         placeholder="{{'myprofile.assignedPostLAddress'| translate}}" class="form-control">
+                       <div *ngIf="(submitted && f.assignedPostalCode.invalid) ||(f.assignedPostalCode.dirty ||
+                         f.assignedPostalCode.touched)">
+                         <div [hidden]="!f.assignedPostalCode.errors?.required" class="invalidControl">
+                           {{'myprofile.required'| translate}} </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+
+
+
+               </div>
+               <div class="form-group text-right mb-0">
+                 <button [disabled]="isLoading" class="btn btn-primary float-right">
+                   <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-1"></span>
+
+                   {{'myprofile.updateProfile'| translate}}</button>
+
+                 <button (click)="resetForm()" type="button" class="btn btn-secondary  waves-effect waves-light mr-2">
+                   {{'myprofile.cancel'| translate}}
+                 </button>
+               </div>
+
+             </form>
+           </div>
+         </div>
+       </div><!-- end col -->
+
+
+     </div>
+
+
+
+
+   </div> <!-- end content -->

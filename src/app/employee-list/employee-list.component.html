@@ -19,8 +19,7 @@
            <div>
              <input type="text" [(ngModel)]="searchText" placeholder="Search user...." class="form-control">
            </div>
-           <div *ngIf="(userList | userFilter: searchText).length > 0; else noResults" class="inbox-widget slimscroll"
-             style=" max-height:250px;
+           <div *ngIf="(userList | userFilter: searchText).length > 0;" class="inbox-widget slimscroll" style=" max-height:250px;
              overflow-y:auto; ">
              <div *ngIf="isLoading" class="bd-example">
                <button class="btn btn-primary" type="button" disabled>
@@ -36,7 +35,7 @@
                <div class="inbox-item-img">
 
                  <button (click)="openModal()" style="color: skyblue;" class="rounded-circle">
-                   {{user.firstName | titlecase}}</button>
+                   {{user.firstName.charAt(0)| titlecase}}</button>
                </div>
                <a href="#">
                  <h5 style="color: deepskyblue !important;" class="inbox-item-author font-14 m-0">
@@ -47,11 +46,11 @@
                <p class="inbox-item-text text-truncate">{{user.email}}</p>
                <p class="inbox-item-date">
 
-                 <mat-icon aria-hidden="false" [ngClass]="user.uid==localid.value?'activeIcon':'inactiveicon'"
+                 <!-- <mat-icon aria-hidden="false" [ngClass]="user.uid==localid.value?'activeIcon':'inactiveicon'"
                    (click)="getCustomerList(user.uid);localid.value=user.uid" style="cursor: pointer;"
                    aria-label="Example home icon">
                    arrow_forward_ios
-                 </mat-icon>
+                 </mat-icon> -->
 
 
                </p>
@@ -88,6 +87,7 @@
                  </tr>
                </thead>
                <tbody>
+
                  <tr *ngFor="let customer of customerList; let i=index">
                    <td>{{i+1}}</td>
                    <td>{{customer.email}}</td>
@@ -95,11 +95,12 @@
                    <td>26/04/2016</td>
                    <td><span class="badge badge-danger">Released</span></td>
                    <td>Coderthemes</td>
-                 </tr>
 
+                 </tr>
 
                </tbody>
              </table>
+             <div class="norecord" *ngIf="customerList">No record found.</div>
            </div>
          </div>
        </div>
@@ -108,6 +109,3 @@
    </div>
    <!-- end row -->
  </div>
- <ng-template #noResults>
-   <p>No results found for "{{searchText}}".</p>
- </ng-template>

@@ -27,7 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/styles.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
@@ -37,8 +38,8 @@
             "production": {
               "budgets": [{
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -93,8 +94,10 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+                     "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                     "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+                     "src/styles.css",
+                     "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           }

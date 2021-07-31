@@ -13,6 +13,7 @@ import { AuthService } from '../Service/Auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
   userData: any;
+  IsGerman: any;
   userInfo: any;
   constructor(
     private router: Router,
@@ -37,7 +38,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.showCurrentLanguage();
+  }
 
   get isAdmin() {
     return this.userInfo && this.userInfo.role[0] == 'admin';
@@ -46,7 +49,6 @@ export class HeaderComponent implements OnInit {
     return this.userInfo && this.userInfo.role[0] == 'user';
   }
   sidebarEnable() {
-    console.log('clicked');
     const body = document.getElementsByTagName('body')[0];
     if (body.classList.contains('enlarged')) {
       body.classList.remove('enlarged');
@@ -58,6 +60,17 @@ export class HeaderComponent implements OnInit {
     this.authService.SignOut();
   }
   switchLang(lang: string) {
+    window.localStorage.setItem('language', lang);
+    this.IsGerman =
+      window.localStorage.getItem('language') == 'de' ? true : false;
     this.translate.use(lang);
+  }
+  showCurrentLanguage() {
+    if (window.localStorage.getItem('language') != null) {
+      this.IsGerman =
+        window.localStorage.getItem('language') == 'de' ? true : false;
+    } else {
+      this.IsGerman = 'de';
+    }
   }
 }

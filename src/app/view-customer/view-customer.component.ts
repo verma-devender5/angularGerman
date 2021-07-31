@@ -18,7 +18,6 @@ export class ViewCustomerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
     this.getCustomer();
   }
 

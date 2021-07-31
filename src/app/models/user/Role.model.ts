@@ -1,4 +1,4 @@
 export interface Role {
   admin: boolean;
-  user: boolean;
+  employee: boolean;
 }

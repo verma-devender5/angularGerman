@@ -1,0 +1,228 @@
+   <!-- Start Content-->
+   <div class="container-fluid">
+
+     <!-- start page title -->
+     <div class="row">
+       <div class="col-12">
+         <div class="page-title-box" style="height: 20px !important;">
+
+
+         </div>
+       </div>
+     </div>
+     <!-- end page title -->
+
+
+
+     <div class="row">
+       <div class="col-sm-12">
+         <div class="card">
+           <div class="card-body">
+
+
+             <h4 class="header-title mb-4">{{'createcustomer.createCustomer' | translate}}</h4>
+
+             <form [formGroup]='form' (ngSubmit)="onSubmit()" novalidate>
+               <!-- <div>{{form.value | json}}</div> -->
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label for="userName">{{'createcustomer.createCustomer' | translate}}<span>*</span></label>
+                     <select #branch class="form-control" formControlName="branch"
+                       (change)="selectChange(branch.value)">
+                       <option *ngFor="let item of branches" [value]="item.id">{{item.name}}</option>
+                     </select>
+                     <div *ngIf="(submitted && f.branch.invalid) ||(f.branch.dirty || f.branch.touched)">
+                       <div [hidden]="!f.branch.errors?.required" class="invalidControl">
+                         {{'createcustomer.selectBranch' | translate}}</div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="col-xl-6">
+                   <div class="form-group" *ngIf="branch.value=='5'">
+                     <label> {{'createcustomer.other' | translate}}<span>*</span></label>
+                     <input type="text" formControlName="otherbranch"
+                       placeholder=" {{'createcustomer.mentionOther' | translate}}" class="form-control">
+                     <div *ngIf="form.controls.otherbranch.hasError('required')">
+                       <div [hidden]="!f.otherbranch.errors?.required" class="invalidControl">
+                         {{'createcustomer.otherIsRequired' | translate}}</div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label> {{'createcustomer.street' | translate}}<span>*</span></label>
+                     <input formControlName="street" placeholder=" {{'createcustomer.enterStreet' | translate}}"
+                       class="form-control">
+                     <div *ngIf="(submitted && f.street.invalid) ||(f.street.dirty || f.street.touched)">
+                       <div [hidden]="!f.street.errors?.required" class="invalidControl">
+                         {{'createcustomer.streetIsRequired' | translate }}</div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label>{{'createcustomer.houseNumber' | translate}}<span>*</span></label>
+                     <input formControlName="houseNumber"
+                       placeholder=" {{'createcustomer.enterHouseNumber' | translate}}" class="form-control">
+                     <div *ngIf="(submitted && f.houseNumber.invalid) ||(f.houseNumber.dirty || f.houseNumber.touched)">
+                       <div [hidden]="!f.houseNumber.errors?.required" class="invalidControl">
+                         {{'createcustomer.houseNumberIsRequired' | translate }}
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label> {{'createcustomer.postalCode' | translate}}<span>*</span></label>
+                     <input formControlName="postalCode" placeholder=" {{'createcustomer.enterPostalCode' | translate}}"
+                       class="form-control">
+                     <div *ngIf="(submitted && f.postalCode.invalid) ||(f.postalCode.dirty || f.postalCode.touched)">
+                       <div [hidden]="!f.postalCode.errors?.required" class="invalidControl">
+                         {{'createcustomer.postalCodeIsRequired' | translate}}
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label> {{'createcustomer.city' | translate}}<span>*</span></label>
+                     <input formControlName="city" placeholder="{{'createcustomer.enterCity' | translate }}"
+                       class="form-control">
+                     <div *ngIf="(submitted && f.city.invalid) ||(f.city.dirty || f.city.touched)">
+                       <div [hidden]="!f.city.errors?.required" class="invalidControl">
+                         {{'createcustomer.cityIsRequired' | translate }} </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label>{{'createcustomer.owner' | translate}}<span>*</span></label>
+                     <input formControlName="owner" placeholder=" {{'createcustomer.enterOwner' | translate}}"
+                       class="form-control">
+                     <div *ngIf="(submitted && f.owner.invalid) ||(f.owner.dirty || f.owner.touched)">
+                       <div [hidden]="!f.owner.errors?.required" class="invalidControl">
+                         {{'createcustomer.ownerIsRequired' | translate}} </div>
+                     </div>
+                   </div>
+                 </div>
+
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label>{{'createcustomer.email' | translate}}<span>*</span></label>
+                     <input formControlName="email" placeholder=" {{'createcustomer.enterEmail' | translate}}"
+                       class="form-control">
+                     <div *ngIf="(submitted && f.email.invalid) ||(f.email.dirty || f.email.touched)">
+                       <div [hidden]="!f.email.errors?.required" class="invalidControl">
+                         {{'createcustomer.emailIsRequired' | translate}} </div>
+                       <div [hidden]="!f.email.errors?.email" class="invalidControl">
+                         {{'createcustomer.invalidEmail' | translate}} </div>
+                     </div>
+                   </div>
+                 </div>
+
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label>{{'createcustomer.telephone' | translate}}<span>*</span></label>
+                     <input formControlName="telephone" placeholder=" {{'createcustomer.enterTelephone' | translate}}"
+                       class="form-control">
+                     <div *ngIf="(submitted && f.telephone.invalid) ||(f.telephone.dirty || f.telephone.touched)">
+                       <div [hidden]="!f.telephone.errors?.required" class="invalidControl">
+                         {{'createcustomer.telephoneIsRequired' | translate}}
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label>{{'createcustomer.fax' | translate}}<span>*</span></label>
+                     <input formControlName="fax" placeholder=" {{'createcustomer.enterFax' | translate}}"
+                       class="form-control">
+                     <div *ngIf="(submitted && f.fax.invalid) ||(f.fax.dirty || f.fax.touched)">
+                       <div [hidden]="!f.fax.errors?.required" class="invalidControl">
+                         {{'createcustomer.faxIsRequired' | translate}}</div>
+                     </div>
+                   </div>
+                 </div>
+
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label>{{'createcustomer.homePage' | translate}}<span>*</span></label>
+                     <input formControlName="homePage" placeholder=" {{'createcustomer.enterHomePage' | translate}}"
+                       class="form-control">
+                     <div *ngIf="(submitted && f.homePage.invalid) ||(f.homePage.dirty || f.homePage.touched)">
+                       <div [hidden]="!f.homePage.errors?.required" class="invalidControl">
+                         {{'createcustomer.homePageIsRequired' | translate }} </div>
+                     </div>
+                   </div>
+                 </div>
+
+               </div>
+               <div class="row">
+                 <div class="col-xl-6">
+                   <div class="form-group">
+                     <label>{{'createcustomer.notation' | translate}}<span>*</span></label>
+                     <input formControlName="notations" placeholder=" {{'createcustomer.enterNotation' | translate}}"
+                       class="form-control">
+                     <div *ngIf="(submitted && f.notations.invalid) ||(f.notations.dirty || f.notations.touched)">
+                       <div [hidden]="!f.notations.errors?.required" class="invalidControl">
+                         {{'createcustomer.notationIsRequired' | translate}}
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+
+               </div>
+               <div class="row">
+                 <div class="col-xl-12">
+                   <div class="form-group">
+                     <div class="checkbox">
+                       <input id="remember-1" formControlName="confirmData" type="checkbox">
+                       <label [ngClass]="(f.confirmData.invalid)?'invalidControl':''" for="remember-1"> Hiermit
+                         bestätige
+                         ich, alle Daten korrekt eingegeben zu haben </label>
+
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <div class="form-group text-right mb-0">
+                 <button class="btn btn-primary float-right">
+                   <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-1"></span>
+
+                   {{'createcustomer.createCustomer' | translate}}</button>
+
+
+                 <button type="button" (click)="onReset();" class="btn btn-secondary  waves-effect waves-light mr-2">
+                   {{'createcustomer.cancel' | translate}}
+                 </button>
+               </div>
+
+             </form>
+           </div>
+         </div>
+       </div><!-- end col -->
+
+
+     </div>
+
+
+
+
+   </div> <!-- end content -->

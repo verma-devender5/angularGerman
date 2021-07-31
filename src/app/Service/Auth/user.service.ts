@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthMainService } from '../AuthService/auth-main.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,15 +9,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class UserService {
   constructor(
     private db: AngularFirestore,
-
+    private auth: AuthMainService,
     private afAuth: AngularFireAuth
-  ) {
-    this.afAuth.authState.subscribe((user) => {
-      if (user) {
-        user.uid;
-      }
-    });
-  }
+  ) {}
   getCustomer = (uid: string) => {
     return this.db
       .collection('users')
@@ -28,7 +23,7 @@ export class UserService {
     return this.db
       .collection('users', (ref) =>
         ref
-          .where('role', 'array-contains', 'user')
+          .where('roles.employee', '==', true)
           .orderBy('firstName', 'asc')
           .orderBy('lastName', 'asc')
       )

@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   submitted: boolean = false;
   isLoggedIn = false;
   isLoginFailed = false;
+  isLoading: boolean = false;
   errorMessage = '';
   roles: string[] = [];
   constructor(
@@ -28,10 +29,6 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.roles = this.tokenStorage.getUser().roles;
-    }
     this.validateLoginForm();
   }
   get f() {
@@ -48,24 +45,21 @@ export class LoginComponent implements OnInit {
     window.location.reload();
   }
   onSubmit = () => {
-    console.log(this.loginForm.value);
+    this.submitted = true;
+
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.isLoading = true;
     this.authService
       .SignIn(this.loginForm.value)
       .then((res) => {
-        console.log(res);
+        this.isLoading = false;
+        // console.log(res);
       })
       .catch((error) => {
-        console.error(error);
-      });
-  };
-  onSubmitreg = () => {
-    this.authService
-      .SignUp('monty2@gmail.com', '1234567')
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.error(error);
+        this.isLoading = false;
+        //console.error(error);
       });
   };
 }

@@ -1,0 +1,68 @@
+{
+  "login": {
+    "street": "Street",
+    "houseNumber": "House Number",
+    "city": "City",
+    "postalCode": "Postal Code",
+    "pleaseEnterCity": "Please enter city",
+    "pleaseEnterStreet": "Please enter street",
+    "pleaseEnterHouseNumber": "Please enter house number",
+    "enterYourEmail": "Enter your email",
+    "enterYourPassword": "Enter your password",
+    "emailIsRequired": "Email is required",
+    "passwordIsRequired": "Password is required",
+    "emailIsInvalid": "Email is invalid",
+    "signIn": "SIGN IN",
+    "logIn": "Log In",
+    "userNotFound": "User not found",
+    "wrongUserNamePassword": "Wrong username or password",
+    "accountDisabled": "This account is disabled please contact administrator",
+    "toManyWrongAttempts": "Your account has been disabled due to multiple wrong attempts",
+    "error": "Error",
+    "success": "Success"
+  },
+  "signup": {
+    "enterYourFirstName": "Enter your first name",
+    "enterYourLastName": "Enter your last name",
+    "firstNameIsRequired": "First name is required",
+    "lastNameIsRequired": "Last name is required",
+    "enterYourSecretKey": "Enter secret key",
+    "secretKeyIsRequired": "Secret key is required",
+    "signUp": "SIGN UP",
+    "signUpS": "Sign Up",
+    "emailAlreadyInUse": "Email is already in use",
+    "userCreatedSuccessfully": "User created successfully"
+
+  },
+  "myprofile": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "dateOfBirth": "Date Of Birth",
+    "email": "Email",
+    "telephone": "Telephone",
+    "fax": "Fax",
+    "numberOfIdentityCard": "Number of Identity Card",
+    "companyRegistrationNumber": "Company Registration Number",
+    "companyOrPrivateAddress": "company or Private Address",
+    "assignedPostLAddress": "Assigned Postal Address",
+    "homePage": "Home Page",
+    "dateOfBirthRequired": "Date of birth required.",
+    "telephoneRequired": "Telephone is required",
+    "faxRequired": "Fax is required.",
+    "numberOfIdentityCardRequired": "Number of Identity Card required",
+    "companyRegistrationNumberRequired": "Company Registration Number required",
+    "companyOrPrivateAddressRequired": "company or Private Address required",
+    "assignedPostLAddressRequired": "Assigned Postal Address required",
+    "homePageRequired": "Home Page",
+    "updateProfile": "Update Profile",
+    "cancel": "Cancel",
+    "required": "Required",
+    "personalData": "Personal Data"
+
+  },
+  "sidebar": {
+    "createCustomer": "Create Customer",
+    "viewCustomer": "View Customer",
+    "personalInfo": "Personal Info"
+  }
+}

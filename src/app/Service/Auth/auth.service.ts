@@ -9,7 +9,7 @@ import { applicationConstants } from './../../Constants/ApplicationConstants';
 import { Observable, throwError } from 'rxjs';
 import { AuthConstants } from 'src/app/Constants/AuthConstants';
 import { IToken } from 'src/app/Interface/User/IToken';
-import { loginApi } from 'src/app/API/login/loginApi';
+
 import { catchError, first, retry } from 'rxjs/operators';
 import {
   AngularFirestore,
@@ -20,61 +20,25 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'src/app/models/user/User.model';
 import { UserDisplay } from 'src/app/models/user/UserDisplay.model';
 import { UserMore } from 'src/app/models/user/UserMore.model';
+import { NotificationService } from 'src/app/notification.service';
+import { Role } from 'src/app/models/user/Role.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   userData: any;
   userInfo: any;
   displayData: any;
+
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning
-  ) {
-    this.getroles();
-    /* Saving user data in localstorage when 
-    logged in and setting up null when logged out */
-    // this.afAuth.authState.subscribe((user) => {
-    //   if (user) {
-    //     this.userData = user;
-    //     this.afAuth.authState.subscribe((user) => {
-    //       if (user != null) {
-    //         this.afs.firestore
-    //           .collection('users')
-    //           .doc(user.uid)
-    //           .get()
-    //           .then((res) => {
-    //             this.userInfo = res.data();
-    //           })
-    //           .catch((error) => {
-    //             console.log(error);
-    //           });
-    //       }
-    //     });
-    //   } else {
-    //     this.router.navigate(['/login']);
-    //   }
-    // });
-  }
-  checkLogin = () => {
-    var docRef = this.afs.collection('checkLogin').doc('adminAuthDoc');
+    public ngZone: NgZone, // NgZone service to remove outside scope warning
+    private notification: NotificationService,
+    private translate: TranslateService
+  ) {}
 
-    docRef.ref
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          console.log('Document data:', doc.data());
-        } else {
-          // doc.data() will be undefined in this case
-          console.log('No such document!');
-        }
-      })
-      .catch((error) => {
-        console.log('Error getting document:', error);
-        this.router.navigate(['/login']);
-      });
-  };
   // Sign in with email/password
   SignIn(userData: IUser) {
     return this.afAuth
@@ -83,50 +47,110 @@ export class AuthService {
 
       .then((result: any) => {
         this.ngZone.run(() => {
-          const nresult = this.afAuth.idTokenResult.subscribe((s) => {
-            console.log(s?.token);
+          const usersRef = this.afs
+            .collection('users')
+            .doc(result.user.uid)
+            .get();
+
+          usersRef.subscribe((docSnapshot: any) => {
+            if (docSnapshot.exists) {
+              usersRef.subscribe((usr) => {
+                const userData = usr.data() as UserMore;
+                const roles = userData.roles as Role;
+
+                if (roles.admin) {
+                  this.router.navigate(['/admin/employees']);
+                } else if (roles.employee) {
+                  this.router.navigate(['/employee/createcustomer']);
+                }
+              });
+            }
           });
-          this.router.navigate(['user/createcustomer']);
+          // this.router.navigate(['user/createcustomer']);
         });
         this.SetUserDataLogin(result.user);
       })
       .catch((error: any) => {
-        window.alert(error.message);
+        switch (error.code) {
+          case 'auth/wrong-password':
+            this.notification.showError(
+              this.translate.instant('login.wrongUserNamePassword'),
+              this.translate.instant('login.error')
+            );
+            break;
+          case 'auth/user-not-found':
+            this.notification.showError(
+              this.translate.instant('login.userNotFound'),
+              this.translate.instant('login.error')
+            );
+            break;
+          case 'auth/user-disabled':
+            this.notification.showError(
+              this.translate.instant('login.accountDisabled'),
+              this.translate.instant('login.error')
+            );
+            break;
+          case 'auth/too-many-requests':
+            this.notification.showError(
+              this.translate.instant('login.toManyWrongAttempts'),
+              this.translate.instant('login.error')
+            );
+            break;
+          default:
+            break;
+        }
+
+        // window.alert(error.message);
       });
   }
-  getroles() {
-    this.afAuth.idTokenResult.subscribe((res) => {
-      const claim = res?.claims;
-      console.log('claim data : ' + JSON.stringify(claim));
-    });
-  }
-  get isLoggedIn() {
-    return this.afAuth.authState.pipe(first());
-  }
-  SignUpNew(email: any, password: any) {
+
+  SignUpNew(email: any, password: any, firstName: any, lastName: any) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((registeredUser) => {
-        this.afs.collection('users').add({
-          uid: registeredUser.user?.uid,
-          email: registeredUser.user?.email,
-          firstName: '',
-          lastName: '',
-          dateOfBirth: '',
-          companyOrPrivateAddress: '',
-          numberOfIdentityCard: '',
-          companyRegistrationNumber: '',
-          homePage: '',
-          telephone: '',
-          fax: '',
-          assignedPostalCode: '',
-          role: ['user', 'view'],
-          createdOn: new Date(),
-          isActive: true,
-        });
+        this.afs
+          .collection('users')
+          .doc(registeredUser.user?.uid)
+          .set({
+            uid: registeredUser.user?.uid,
+            email: registeredUser.user?.email,
+            firstName: firstName,
+            lastName: lastName,
+            dateOfBirth: '',
+            companyOrPrivateAddress: '',
+            numberOfIdentityCard: '',
+            companyRegistrationNumber: '',
+            homePage: '',
+            telephone: '',
+            fax: '',
+            assignedPostalCode: '',
+            roles: {
+              admin: false,
+              employee: true,
+            },
+            createdOn: new Date(),
+            isActive: true,
+          });
+        this.notification.showSuccess(
+          this.translate.instant('signup.userCreatedSuccessfully'),
+          this.translate.instant('login.success')
+        );
       })
       .catch((error) => {
-        window.alert(error.message);
+        switch (error.code) {
+          case 'auth/email-already-in-use':
+            this.notification.showError(
+              this.translate.instant('signup.emailAlreadyInUse'),
+              this.translate.instant('login.error')
+            );
+            break;
+
+          default:
+            this.notification.showError(error.message, 'Error');
+            break;
+        }
+
+        //window.alert(error.message);
       });
   }
   SignUp(email: any, password: any) {
@@ -150,7 +174,7 @@ export class AuthService {
             return res.data() as UserDisplay;
           })
           .catch((error) => {
-            console.log(error);
+            // console.log(error);
           });
       }
     });
@@ -201,45 +225,5 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       this.router.navigate(['/login']);
     });
-  }
-  registerUser() {
-    const customClaims = {
-      admin: true,
-      accessLevel: 9,
-    };
-    this.afAuth
-      .createUserWithEmailAndPassword('monty@gmail.com', 'monty')
-      .then((user) => {
-        const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-          `users/${user.user?.uid}`
-        );
-
-        return userRef.set(user, {
-          merge: true,
-        });
-      });
-  }
-  getCurrentUserRole1() {
-    return this.afs.collection('users').snapshotChanges();
-  }
-
-  getCurrentUserRole() {
-    let userRole: any;
-    this.afAuth.authState.subscribe((user) => {
-      if (user != null) {
-        this.afs.firestore
-          .collection('users')
-          .doc(user.uid)
-          .get()
-          .then((res) => {
-            userRole = res.data();
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-    });
-    console.log(userRole);
-    return userRole;
   }
 }

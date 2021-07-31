@@ -58,10 +58,8 @@
 
 
 
-                       <input formControlName="dateOfBirth" class="form-control" matInput [matDatepicker]="picker">
-                       <mat-datepicker-toggle matSuffix [for]="picker">
-                       </mat-datepicker-toggle>
-                       <mat-datepicker #picker></mat-datepicker>
+                       <input formControlName="dateOfBirth" class="form-control">
+
 
                        <div
                          *ngIf="(submitted && f.dateOfBirth.invalid) ||(f.dateOfBirth.dirty || f.dateOfBirth.touched)">

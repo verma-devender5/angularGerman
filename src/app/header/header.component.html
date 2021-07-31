@@ -2,13 +2,8 @@
   <div class="navbar-custom">
 
     <ul class="list-unstyled topnav-menu float-right mb-0">
-      <li style="display: none;"> <select class="form-control" #selectedLang (change)="switchLang(selectedLang.value)">
-          <option *ngFor="let language of translate.getLangs()" [value]="language"
-            [selected]="language === translate.currentLang">
-            {{ language }}
-          </option>
-        </select></li>
-      <li style="display: none;" class="dropdown ">
+
+      <li class="dropdown " style="display: none;">
         <a class="nav-link dropdown-toggle mr-0" data-toggle="dropdown" href="layouts-vertical.html#" role="button"
           aria-haspopup="false" aria-expanded="false">
           <img src="assets/images/flags/us.jpg" alt="user-image" class="mr-2" height="12"> <span
@@ -206,16 +201,18 @@
           </a>
 
           <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item notify-item">
-            <i class="mdi mdi-settings-outline"></i>
-            <span>Settings</span>
+          <a class="dropdown-item notify-item" (click)="switchLang('de')">
+            <img src="assets/images/flags/germany.jpg" alt="user-image" class="mr-2" height="12"> <span
+              class="align-middle">German <i *ngIf="IsGerman" style="color: green;"
+                class="fas fa-check-circle"></i></span>
+          </a>
+          <a class="dropdown-item notify-item" (click)="switchLang('en')">
+            <img src="assets/images/flags/us.jpg" alt="user-image" class="mr-2" height="12"> <span
+              class="align-middle">English <i *ngIf="!IsGerman" style="color: green;"
+                class="fas fa-check-circle"></i></span>
           </a>
 
-          <!-- item-->
-          <a href="javascript:void(0);" class="dropdown-item notify-item">
-            <i class="mdi mdi-lock-outline"></i>
-            <span>Lock Screen</span>
-          </a>
+
 
           <div class="dropdown-divider"></div>
 
@@ -228,7 +225,7 @@
         </div>
       </li>
 
-      <li class="dropdown notification-list">
+      <li class="dropdown notification-list" style="display: none;">
         <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
           <i class="mdi mdi-settings-outline noti-icon"></i>
         </a>
@@ -241,7 +238,7 @@
     <div class="logo-box">
       <a href="index.html" class="logo text-center">
         <span class="logo-lg">
-          <img src="assets/images/logo-light.png" alt="" height="16">
+          <img src="assets/images/logo.jpg" alt="" height="66">
           <!-- <span class="logo-lg-text-light">Flacto</span> -->
         </span>
         <span class="logo-sm">

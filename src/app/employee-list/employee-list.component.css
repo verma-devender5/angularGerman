@@ -37,3 +37,8 @@
   background: skyblue;
   border-radius: 10px;
 }
+.norecord {
+  margin: 5px;
+  text-align: center;
+  color: red;
+}

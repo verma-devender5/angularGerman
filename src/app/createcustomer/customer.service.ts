@@ -19,15 +19,15 @@ export class CustomerService {
     private db: AngularFirestore,
 
     public afAuth: AngularFireAuth
-  ) {
+  ) {}
+
+  getCustomer = () => {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.uid = user.uid;
       }
     });
-  }
-
-  getCustomer = () => {
+    console.log(this.uid);
     return this.firestore
       .collection('users')
       .doc(this.uid)
