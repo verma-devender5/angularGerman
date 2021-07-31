@@ -31,6 +31,7 @@ export class ViewCustomersComponent implements OnInit {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.firestore
+
           .collection('users')
           .doc(user.uid)
           .collection<Customer>('customers', (ref) =>
