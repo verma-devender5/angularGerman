@@ -15,6 +15,7 @@ import { NotificationService } from 'src/app/notification.service';
 export class ViewCustomersComponent implements OnInit {
   customerList: any;
   isLoading: boolean = false;
+  pageTotal: any = [];
   constructor(
     private _customerService: CustomerService,
     private notification: NotificationService,
@@ -40,6 +41,11 @@ export class ViewCustomersComponent implements OnInit {
           .valueChanges()
           .subscribe((res) => {
             this.customerList = res;
+            let totatal = this.customerList.length;
+            for (let i = 0; i < totatal; i++) {
+              this.pageTotal.push(i + 1);
+            }
+            console.log(this.pageTotal);
             this.isLoading = false;
           });
       }
