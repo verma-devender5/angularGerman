@@ -720,6 +720,9 @@ body.enlarged {
   .navbar-custom .button-menu-mobile {
     margin-left: 8px;
   }
+  .toast-top-full-width {
+    max-width: 40% !important;
+  }
 }
 .topbar-light .navbar-custom {
   background-color: #fff;

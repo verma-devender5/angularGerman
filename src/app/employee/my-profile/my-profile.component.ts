@@ -67,16 +67,28 @@ export class MyProfileComponent implements OnInit {
   }
   validateForm() {
     this.form = this.fb.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      dateOfBirth: ['', [Validators.required]],
-      assignedPostalCode: ['', [Validators.required]],
-      homePage: ['', [Validators.required]],
-      companyRegistrationNumber: ['', [Validators.required]],
-      numberOfIdentityCard: ['', [Validators.required]],
-      companyOrPrivateAddress: ['', [Validators.required]],
-      fax: ['', [Validators.required]],
-      telephone: ['', [Validators.required]],
+      firstName: [{ value: '', disabled: true }, [Validators.required]],
+      lastName: [{ value: '', disabled: true }, [Validators.required]],
+      dateOfBirth: [{ value: '', disabled: true }, [Validators.required]],
+      assignedPostalCode: [
+        { value: '', disabled: true },
+        [Validators.required],
+      ],
+      homePage: [{ value: '', disabled: true }, [Validators.required]],
+      companyRegistrationNumber: [
+        { value: '', disabled: true },
+        [Validators.required],
+      ],
+      numberOfIdentityCard: [
+        { value: '', disabled: true },
+        [Validators.required],
+      ],
+      companyOrPrivateAddress: [
+        { value: '', disabled: true },
+        [Validators.required],
+      ],
+      fax: [{ value: '', disabled: true }, [Validators.required]],
+      telephone: [{ value: '', disabled: true }, [Validators.required]],
       createdOn: [Date()],
       isActive: [true],
       email: [{ value: '', disabled: true }],

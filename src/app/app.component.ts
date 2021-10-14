@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivationStart, Router, RouterOutlet } from '@angular/router';
+import { SwUpdate } from '@angular/service-worker';
 import { TranslateService } from '@ngx-translate/core';
 import { TokenStorageService } from './Service/Auth/token-storage.service';
 
@@ -15,7 +16,8 @@ export class AppComponent {
   constructor(
     private tokenStorageService: TokenStorageService,
     private router: Router,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private swUpdate: SwUpdate
   ) {
     translate.addLangs(['en', 'de']);
     if (window.localStorage.getItem('language') != null) {
@@ -33,5 +35,12 @@ export class AppComponent {
     //     console.log('matched');
     //   this.outlet.deactivate();
     // });
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.available.subscribe(() => {
+        if (confirm('New version available. Load New Version?')) {
+          window.location.reload();
+        }
+      });
+    }
   }
 }

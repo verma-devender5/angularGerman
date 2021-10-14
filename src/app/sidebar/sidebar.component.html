@@ -18,18 +18,19 @@
             </li>
 
             <li *ngIf="isUser">
-              <a [routerLink]="['/employee/createcustomer']" routerLinkActive="active" class="waves-effect"> <i
-                  class="fas fa-user-tie"></i>
+              <a [routerLink]="['/employee/createcustomer']" (click)="sidebarEnable();" routerLinkActive="active"
+                class="waves-effect"> <i class="fas fa-user-tie"></i>
                 <span> {{'sidebar.createCustomer'| translate}}</span></a>
 
             </li>
-            <li *ngIf="isUser"> <a [routerLink]="['/employee/viewcustomer']" routerLinkActive="active"
-                class="waves-effect">
+            <li *ngIf="isUser"> <a [routerLink]="['/employee/viewcustomer']" (click)="sidebarEnable();"
+                routerLinkActive="active" class="waves-effect">
                 <i class="fas fa-users"></i>
                 <span> {{'sidebar.viewCustomer'| translate}} </span></a>
 
             </li>
-            <li *ngIf="isUser"><a [routerLink]="['/employee/myprofile']" routerLinkActive="active" class="waves-effect">
+            <li *ngIf="isUser"><a [routerLink]="['/employee/myprofile']" (click)="sidebarEnable();"
+                routerLinkActive="active" class="waves-effect">
                 <i class="fas fa-user"></i>
                 <span>{{'sidebar.personalInfo'| translate}} </span></a>
 
@@ -41,7 +42,16 @@
         <!-- End Sidebar -->
 
         <div class="clearfix"></div>
+        <div style="min-height: 150px;"></div>
+        <div class="logo-box">
+          <a href="index.html" class="logo text-center">
+            <span class="logo-lg">
+              <img src="assets/images/logo.jpg" alt="" height="148" width="120">
+              <!-- <span class="logo-lg-text-light">Flacto</span> -->
+            </span>
 
+          </a>
+        </div>
       </div>
       <!-- Sidebar -left -->
 

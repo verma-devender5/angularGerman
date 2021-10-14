@@ -37,8 +37,8 @@
 
   },
   "myprofile": {
-    "firstName": "Vorname",
-    "lastName": "Vorname",
+    "firstName": "Name“",
+    "lastName": "Nachname",
     "dateOfBirth": "Geburtsdatum",
     "email": "Email",
     "telephone": "Telefon",
@@ -86,10 +86,10 @@
     "enterEmail": "Email eingeben",
     "enterTelephone": "Telefon eingeben",
     "enterFax": "Fax eingeben",
-    "enterHomePage": "Startseite betreten",
+    "enterHomePage": "Homepage eingeben“",
     "enterNotation": "Notation eingeben",
     "enterHouseNumber": "Hausnummer eingeben",
-    "enterCity": "Stadt betreten",
+    "enterCity": "Stadt eingeben",
     "streetIsRequired": "Straße ist erforderlich",
     "postalCodeIsRequired": "Postleitzahl ist erforderlich",
     "ownerIsRequired": "Besitzer ist erforderlich",
@@ -101,8 +101,31 @@
     "houseNumberIsRequired": "Hausnummer ist erforderlich",
     "cityIsRequired": "Stadt ist erforderlich",
     "mentionOther": "Andere erwähnen",
+    "selectBranch": "Filiale auswählen",
     "other": "Sonstiges",
     "otherIsRequired": "Anderes ist erforderlich",
-    "invalidEmail": "Ungültige E-Mail"
+    "invalidEmail": "Ungültige E-Mail",
+    "pleaseSelectBranch": "Bitte Filiale auswählen",
+    "pharmacy": "Apotheke",
+    "doctorsOffice": "Arztpraxis",
+    "hairDresser": "Friseursalon",
+    "cosmeticsStudio": "Kosmetikinstitut",
+    "others": "Andere"
+  },
+  "viewcustomer": {
+    "branch": "Branche",
+    "street": "Straße",
+    "postalCode": "PLZ",
+    "owner": "Inhaber",
+    "email": "E-Mail",
+    "telephone": "Telefon",
+    "fax": "Fax",
+    "homePage": "Homepage",
+    "notation": "Anmerkungen",
+    "houseNumber": "Hausnummer",
+    "city": "Stadt",
+    "createdOn": "Erstellt am",
+    "contactList": "Kontaktliste",
+    "searchUser": "Benutzer suchen...."
   }
 }

@@ -4,8 +4,8 @@
     <ul class="list-unstyled topnav-menu float-right mb-0">
 
       <li class="dropdown " style="display: none;">
-        <a class="nav-link dropdown-toggle mr-0" data-toggle="dropdown" href="layouts-vertical.html#" role="button"
-          aria-haspopup="false" aria-expanded="false">
+        <a class="nav-link dropdown-toggle mr-0" data-toggle="dropdown" role="button" aria-haspopup="false"
+          aria-expanded="false">
           <img src="assets/images/flags/us.jpg" alt="user-image" class="mr-2" height="12"> <span
             class="align-middle">English <i class="mdi mdi-chevron-down"></i> </span>
         </a>
@@ -184,9 +184,8 @@
 
       <li *ngIf="userInfo  as user" class="dropdown notification-list">
 
-        <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
-          href="layouts-vertical.html#" role="button" aria-haspopup="false" aria-expanded="false">
-          <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+        <a data-toggle="dropdown" style="color: white;" role="button" aria-haspopup="false" aria-expanded="false">
+          {{userInfo.firstName}} {{userInfo.lastName}}
         </a>
         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
           <!-- item-->
@@ -235,7 +234,7 @@
     </ul>
 
     <!-- LOGO -->
-    <div class="logo-box">
+    <div style="display: none;" class="logo-box">
       <a href="index.html" class="logo text-center">
         <span class="logo-lg">
           <img src="assets/images/logo.jpg" alt="" height="66">

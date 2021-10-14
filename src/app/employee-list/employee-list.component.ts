@@ -19,7 +19,6 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private userService: UserService,
     private authService: AuthMainService,
-
     public afAuth: AngularFireAuth,
     private router: Router
   ) {}
@@ -30,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
     if (this.authService.isAdmin) {
       this.getUser();
     } else {
-      this.router.navigate(['admin/Notfound']);
+      //this.router.navigate(['../notfound/notfound']);
     }
   }
   openModal() {

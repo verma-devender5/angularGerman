@@ -1,0 +1,27 @@
+.cdk-overlay-pane {
+  max-height: 80% !important;
+  width: 80% !important;
+}
+.inbox-widget .inbox-item .inbox-item-img img {
+  width: 80% !important;
+}
+.user-profile {
+  float: left;
+  margin-top: 8px;
+  font-weight: 500;
+  color: gray;
+  text-transform: capitalize;
+  width: 100% !important;
+}
+.contact-icons {
+  color: skyblue;
+  font-size: 17px;
+  vertical-align: middle;
+}
+.main-icons {
+  border-bottom: 1px solid #efefef;
+  padding: 5px 0px;
+}
+.inbox-item {
+  float: left;
+}

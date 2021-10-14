@@ -103,6 +103,28 @@
     "selectBranch": "Select Branch",
     "other": "Other",
     "otherIsRequired": "Other is required",
-    "invalidEmail": "Invalid email"
+    "invalidEmail": "Invalid email",
+    "pleaseSelectBranch": "Please Select branch",
+    "pharmacy": "Pharmacy",
+    "doctorsOffice": "Doctors' Office",
+    "hairDresser": "Hairdresser",
+    "cosmeticsStudio": "Cosmetics's Studio",
+    "others": "Others"
+  },
+  "viewcustomer": {
+    "branch": "Branch",
+    "street": "Street",
+    "postalCode": "Postal Code",
+    "owner": "Owner",
+    "email": "Email",
+    "telephone": "Telephone",
+    "fax": "Fax",
+    "homePage": "Homepage",
+    "notation": "Notation",
+    "houseNumber": "House Number",
+    "city": "City",
+    "createdOn": "Created On",
+    "contactList": "Contact List",
+    "searchUser": "Search User...."
   }
 }

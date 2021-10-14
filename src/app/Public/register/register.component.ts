@@ -72,9 +72,9 @@ export class RegisterComponent implements OnInit {
       return;
     }
     const encrypted = this.loginForm.get('secretKey')?.value;
-    console.log(encrypted);
+
     const decrypted = this.encrypt.decryptionAES(encrypted);
-    console.log(decrypted);
+
     if (decrypted != 'structurEmployee') {
       this.notification.showError('Wrong secret key', 'Error');
       return;
@@ -87,6 +87,7 @@ export class RegisterComponent implements OnInit {
     this.authService
       .SignUpNew(email, password, firstName, lastName)
       .then((res) => {
+        this.submitted = false;
         this.resetForm();
       })
       .catch((error) => {

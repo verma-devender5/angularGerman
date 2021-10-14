@@ -22,7 +22,19 @@ export class SidebarComponent implements OnInit {
     return this.authService.isAdmin;
   }
   get isUser() {
-    
     return this.authService.isEmployee;
+  }
+  sidebarEnable() {
+    const body = document.getElementsByTagName('body')[0];
+
+    if (window.innerWidth <= 800 && window.innerHeight <= 800) {
+      if (body.classList.contains('enlarged')) {
+        body.classList.remove('enlarged');
+      } else if (body.classList.contains('sidebar-enable')) {
+        body.classList.remove('sidebar-enable');
+      } else {
+        body.classList.add('sidebar-enable');
+      }
+    }
   }
 }

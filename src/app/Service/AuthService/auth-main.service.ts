@@ -34,16 +34,14 @@ export class AuthMainService {
   }
   getCurrentUserRole(uid: string) {
     const usersRef = this.afs.collection('users').doc(uid).get();
-
     usersRef.subscribe((docSnapshot: any) => {
       if (docSnapshot.exists) {
         usersRef.subscribe((usr) => {
           const userData = usr.data() as UserMore;
-
           const roles = userData.roles as Role;
-
           this.isAdmin = roles.admin;
           this.isEmployee = roles.employee;
+          console.log(this.isAdmin);
         });
       } else {
         this.isAdmin = false;

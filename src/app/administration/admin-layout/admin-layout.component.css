@@ -1,0 +1,14 @@
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table th {
+  color: #212529bf;
+  font-size: 15px;
+  font-weight: 500;
+}
+.table td {
+  font-size: 14px;
+}

@@ -9,9 +9,15 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserModule } from '@angular/platform-browser';
+import { UserFilterPipe } from '../Pipes/user-filter.pipe';
 
 @NgModule({
-  declarations: [HeaderComponent, SidebarComponent, FooterComponent],
+  declarations: [
+    HeaderComponent,
+    SidebarComponent,
+    FooterComponent,
+    UserFilterPipe,
+  ],
 
   imports: [
     CommonModule,
@@ -24,7 +30,7 @@ import { BrowserModule } from '@angular/platform-browser';
       },
     }),
   ],
-  exports: [HeaderComponent, SidebarComponent, FooterComponent],
+  exports: [HeaderComponent, SidebarComponent, FooterComponent, UserFilterPipe],
 })
 export class SharedModule {}
 // AOT compilation support

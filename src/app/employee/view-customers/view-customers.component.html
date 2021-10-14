@@ -15,21 +15,31 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-body">
+
             <div class="dropdown float-right">
+
               <a href="form-validation.html#" class="dropdown-toggle card-drop" data-toggle="dropdown"
                 aria-expanded="false">
                 <i class="mdi mdi-dots-vertical"></i>
               </a>
               <ul class="dropdown-menu dropdown-menu-right">
                 <li><a href="form-validation.html#" class="dropdown-item">Action</a></li>
-                <li><a href="form-validation.html#" class="dropdown-item">Another action</a></li>
+                <li>
+                  <div  class="dropdown-item">Sort By Postal Code</div>
+                </li>
+                <li><a href="form-validation.html#" class="dropdown-item">Sort By Branche</a></li>
                 <li><a href="form-validation.html#" class="dropdown-item">Something else here</a></li>
                 <li class="dropdown-divider"></li>
                 <li><a href="form-validation.html#" class="dropdown-item">Separated link</a></li>
               </ul>
             </div>
+            <div style="float: right;" class="col-6">
 
-            <h4 class="header-title mb-4">Basic Form</h4>
+              <input type="text" [(ngModel)]="searchText" placeholder="{{'viewcustomer.searchUser' | translate}}"
+                class="form-control">
+            </div>
+            <h4 class="header-title mb-4">{{'viewcustomer.contactList' | translate}}</h4>
+
             <div *ngIf="isLoading" class="bd-example">
               <button class="btn btn-primary" type="button" disabled>
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -41,35 +51,30 @@
               <table class="table mb-0 table-nowrap">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Street</th>
-                    <th scope="col">House No.</th>
-                    <th scope="col">Postal Code</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Owner</th>
-                    <th scope="col">Telephone</th>
-                    <th scope="col">Fax</th>
-                    <th scope="col">Notation</th>
-                    <th scope="col">Created On</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">{{'viewcustomer.postalCode' | translate}}</th>
+                    <th scope="col">{{'viewcustomer.city' | translate}}</th>
+                    <th scope="col">{{'viewcustomer.owner' | translate}}</th>
+                    <th scope="col">{{'viewcustomer.telephone' | translate}}</th>
+                    <th scope="col">{{'viewcustomer.email' | translate}}</th>
+                    <th scope="col">{{'viewcustomer.fax' | translate}}</th>
+                    <th scope="col">{{'viewcustomer.street' | translate}}</th>
+                    <th scope="col">{{'viewcustomer.houseNumber' | translate}}</th>
+                    <th scope="col">{{'viewcustomer.createdOn' | translate}}</th>
+                    <th style="display: none;" scope="col">{{'viewcustomer.postalCode' | translate}} </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of customerList; let i=index">
-                    <th scope="row">{{i+1}}</th>
-                    <td>{{item.email}}</td>
-                    <td>{{item.street}}</td>
-                    <td>{{item.houseNumber}}</td>
+                  <tr *ngFor="let item of customerList |userFilter: searchText; let i=index">
                     <td>{{item.postalCode}}</td>
                     <td>{{item.city}}</td>
                     <td>{{item.owner}}</td>
                     <td>{{item.telephone}}</td>
+                    <td>{{item.email}}</td>
                     <td>{{item.fax}}</td>
-
-                    <td>{{item.notation}}</td>
+                    <td>{{item.street}}</td>
+                    <td>{{item.houseNumber}}</td>
                     <td>{{item.createdOn | date}}</td>
-                    <td>
+                    <td style="display: none;">
                       <div class="statusCircleEmpty"></div>
                     </td>
                   </tr>
@@ -77,22 +82,25 @@
                 </tbody>
               </table>
             </div>
-            <div class="row float-right mt-3">
+            <div style="color: red; text-align: center;" *ngIf="customerList.length==0?true:false">No record(s) found.
+            </div>
+            <div *ngIf="customerList.length==0?false:true" class="row float-right mt-3">
 
               <div class="col-sm-12">
                 <nav aria-label="...">
                   <ul class="pagination">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    <li [ngClass]="disablePrevious==true?'disabled':''" class="page-item ">
+                      <div class="page-link" style="cursor: pointer;" (click)='previousPageHandle()' tabindex="-1"
+                        aria-disabled="true">Previous</div>
                     </li>
-                    <li *ngFor="let item of pageTotal; let i=index" class="page-item"><a class="page-link"
-                        href="#">{{i+1}}</a></li>
-                    <!-- <li class="page-item active" aria-current="page">
-                      <a class="page-link" href="#">2</a>
+                    <li *ngFor="let item of pageTotal; let i=index" [ngClass]="(i+1)==hdnCurrentPage?'active':''"
+                      class="page-item ">
+                      <div [ngClass]="customerList?'disabled':''" style="cursor:pointer;" (click)="getCurrentPage(i+1)"
+                        class="page-link">{{i+1}}
+                      </div>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-                    <li class="page-item">
-                      <a class="page-link" href="#">Next</a>
+                    <li class="page-item" [ngClass]="disableNext==true?'disabled':''">
+                      <div style="cursor: pointer;" class="page-link" (click)="nextPageHandle()">Next</div>
                     </li>
                   </ul>
                 </nav>

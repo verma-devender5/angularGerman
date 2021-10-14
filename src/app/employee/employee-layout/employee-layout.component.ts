@@ -22,4 +22,5 @@ export class EmployeeLayoutComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+ 
 }

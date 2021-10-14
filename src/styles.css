@@ -1,16 +1,2 @@
-.navbar-custom {
-  background-color: #0dcaf0 !important;
-}
-.btn-primary {
-  background-color: #0dcaf0 !important;
-  border-color: #0dcaf0 !important;
-}
-#sidebar-menu > ul > li > a.active {
-  color: #0dcaf0 !important;
-}
-#sidebar-menu > ul > li > a:active,
-#sidebar-menu > ul > li > a:focus,
-#sidebar-menu > ul > li > a:hover {
-  color: #0dcaf0 !important;
-  text-decoration: none;
-}
+/* Add application styles & imports to this file! */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";

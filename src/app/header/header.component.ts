@@ -39,6 +39,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const body = document.getElementsByTagName('body')[0];
+
     this.showCurrentLanguage();
   }
 
@@ -50,10 +52,23 @@ export class HeaderComponent implements OnInit {
   }
   sidebarEnable() {
     const body = document.getElementsByTagName('body')[0];
-    if (body.classList.contains('enlarged')) {
-      body.classList.remove('enlarged');
+
+    if (window.innerWidth <= 800 && window.innerHeight <= 800) {
+      if (body.classList.contains('enlarged')) {
+        body.classList.remove('enlarged');
+      } else if (body.classList.contains('sidebar-enable')) {
+        body.classList.remove('sidebar-enable');
+      } else {
+        body.classList.add('sidebar-enable');
+      }
     } else {
-      body.classList.add('enlarged');
+      if (body.classList.contains('enlarged')) {
+        body.classList.remove('enlarged');
+        body.classList.remove('sidebar-enable');
+      } else {
+        body.classList.add('sidebar-enable');
+        body.classList.add('enlarged');
+      }
     }
   }
   logout() {

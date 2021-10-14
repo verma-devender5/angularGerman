@@ -1,1 +1,141 @@
-<p>employee-list works!</p>
+ <!-- Start Content-->
+ <div class="container-fluid">
+
+   <!-- start page title -->
+   <div class="row">
+     <div class="col-12">
+       <div class="page-title-box" style="height: 20px !important;">
+
+
+       </div>
+     </div>
+   </div>
+   <!-- end page title -->
+   <div class="row">
+     <div class="col-xl-4">
+       <div class="card">
+         <div class="card-body">
+           <h4 class="header-title mb-4">Inbox</h4>
+           <div>
+
+             <input type="text" [(ngModel)]="searchText" placeholder="Search user...." class="form-control">
+           </div>
+           <div *ngIf="(userList | userFilter: searchText).length > 0;" class="inbox-widget slimscroll" style=" max-height:600px;
+             overflow-y:auto; ">
+             <div *ngIf="isLoading" class="bd-example">
+               <button class="btn btn-primary" type="button" disabled>
+                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                 Loading...
+               </button>
+
+             </div>
+
+             <input type="hidden" #localid>
+             <div class="inbox-item" *ngFor="let user of userList|userFilter: searchText; let i=index">
+
+               <div class="inbox-item-img">
+
+                 <button class="rounded-circle">
+                   {{user.firstName.charAt(0)| titlecase}}</button>
+               </div>
+               <a [routerLink]="" (click)="openModal1()">
+                 <h5 style="font-size: 15px !important; color: #0e98c5;" class="inbox-item-author font-14 m-0">
+                   {{user.firstName | titlecase}} {{user.lastName | titlecase}}
+                 </h5>
+               </a>
+
+               <p class="inbox-item-text text-truncate">{{user.email}}</p>
+               <p class="inbox-item-date">
+
+                 <mat-icon aria-hidden="false" [ngClass]="user.uid==localid.value?'activeIcon':'inactiveicon'"
+                   (click)="getCustomerList(user.uid);localid.value=user.uid; localidUser.value=user.uid" style="cursor:
+                   pointer;" aria-label="Example home icon">
+                   arrow_forward_ios
+                 </mat-icon>
+
+
+               </p>
+             </div>
+
+
+           </div>
+         </div>
+       </div>
+     </div><!-- end col -->
+
+     <div class="col-xl-8">
+       <div class="card">
+         <div class="card-body">
+
+           <h4 class="header-title mb-4">Latest Projects</h4>
+           <div *ngIf="isLoadingCustomer" class="bd-example">
+             <button class="btn btn-primary" type="button" disabled>
+               <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+               Loading...
+             </button>
+
+           </div>
+           <div class="table-responsive">
+             <table class="table mb-0 table-nowrap">
+               <thead>
+                 <tr>
+
+                   <th scope="col">Email</th>
+                   <th scope="col">Postal Code</th>
+                   <th scope="col">City</th>
+                   <th scope="col">Telephone</th>
+                   <th scope="col">Created On</th>
+                   <th scope="col"></th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr *ngFor="let item of customerList; let i=index">
+
+                   <td>{{item.email}}</td>
+
+                   <td>{{item.postalCode}}</td>
+                   <td>{{item.city}}</td>
+
+                   <td>{{item.telephone}}</td>
+
+                   <td>{{item.createdOn | date}}</td>
+                   <td>
+                     <mat-icon style="color: skyblue;">person_search</mat-icon>
+                   </td>
+                 </tr>
+
+               </tbody>
+             </table>
+              <div style="color: red; text-align: center;" *ngIf="customerList.length==0?true:false">No record(s) found.
+              </div>
+           </div>
+           <div *ngIf="customerList.length==0?false:true" class="row float-right mt-3">
+
+             <div class="col-sm-12">
+               <nav aria-label="...">
+                 <ul class="pagination">
+                   <li [ngClass]="disablePrevious==true?'disabled':''" class="page-item ">
+                     <div class="page-link" style="cursor: pointer;" (click)='previousPageHandle(localidUser.value)'
+                       tabindex="-1" aria-disabled="true">Previous</div>
+                   </li>
+                   <li *ngFor="let item of pageTotal; let i=index" [ngClass]="(i+1)==hdnCurrentPage?'active':''"
+                     class="page-item ">
+                     <div style="cursor:pointer;" (click)="getCurrentPage(i+1,localidUser.value)" class="page-link">
+                       {{i+1}}
+                     </div>
+                   </li>
+                   <li class="page-item" [ngClass]="disableNext==true?'disabled':''">
+                     <div style="cursor: pointer;" class="page-link" (click)="nextPageHandle(localidUser.value)">Next
+                     </div>
+                   </li>
+                 </ul>
+               </nav>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div><!-- end col -->
+     <input type="hidden" #localidUser>
+   </div>
+   <!-- end row -->
+ </div>

@@ -17,6 +17,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserModule } from '@angular/platform-browser';
 import { ViewCustomersComponent } from './view-customers/view-customers.component';
+import { ClickOutsideModule } from 'ng-click-outside';
 @NgModule({
   declarations: [
     CreateCustomerComponent,
@@ -27,7 +28,7 @@ import { ViewCustomersComponent } from './view-customers/view-customers.componen
 
   imports: [
     CommonModule,
-
+    ClickOutsideModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,

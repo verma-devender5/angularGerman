@@ -27,10 +27,12 @@
                <div class="row">
                  <div class="col-xl-6">
                    <div class="form-group">
-                     <label for="userName">{{'createcustomer.createCustomer' | translate}}<span>*</span></label>
-                     <select #branch class="form-control" formControlName="branch"
-                       (change)="selectChange(branch.value)">
-                       <option *ngFor="let item of branches" [value]="item.id">{{item.name}}</option>
+                     <label for="userName">{{'createcustomer.branch' | translate}}<span>*</span></label>
+                     <select #branch class="form-control" formControlName="branch" (change)="selectChange($event)">
+                       <option value="">{{'createcustomer.selectBranch' | translate}}</option>
+                       <option *ngFor="let item of branches" value='{{item.id}}'>{{item.branchName_de}}</option>
+                       <option value="other">{{'createcustomer.other' | translate}}</option>
+
                      </select>
                      <div *ngIf="(submitted && f.branch.invalid) ||(f.branch.dirty || f.branch.touched)">
                        <div [hidden]="!f.branch.errors?.required" class="invalidControl">
@@ -39,7 +41,7 @@
                    </div>
                  </div>
                  <div class="col-xl-6">
-                   <div class="form-group" *ngIf="branch.value=='5'">
+                   <div class="form-group" *ngIf="branch.value=='other'">
                      <label> {{'createcustomer.other' | translate}}<span>*</span></label>
                      <input type="text" formControlName="otherbranch"
                        placeholder=" {{'createcustomer.mentionOther' | translate}}" class="form-control">
@@ -75,7 +77,6 @@
                    </div>
                  </div>
                </div>
-
                <div class="row">
                  <div class="col-xl-6">
                    <div class="form-group">
@@ -149,13 +150,10 @@
                <div class="row">
                  <div class="col-xl-6">
                    <div class="form-group">
-                     <label>{{'createcustomer.fax' | translate}}<span>*</span></label>
+                     <label>{{'createcustomer.fax' | translate}}</label>
                      <input formControlName="fax" placeholder=" {{'createcustomer.enterFax' | translate}}"
                        class="form-control">
-                     <div *ngIf="(submitted && f.fax.invalid) ||(f.fax.dirty || f.fax.touched)">
-                       <div [hidden]="!f.fax.errors?.required" class="invalidControl">
-                         {{'createcustomer.faxIsRequired' | translate}}</div>
-                     </div>
+
                    </div>
                  </div>
 
@@ -163,13 +161,10 @@
                <div class="row">
                  <div class="col-xl-6">
                    <div class="form-group">
-                     <label>{{'createcustomer.homePage' | translate}}<span>*</span></label>
+                     <label>{{'createcustomer.homePage' | translate}}</label>
                      <input formControlName="homePage" placeholder=" {{'createcustomer.enterHomePage' | translate}}"
                        class="form-control">
-                     <div *ngIf="(submitted && f.homePage.invalid) ||(f.homePage.dirty || f.homePage.touched)">
-                       <div [hidden]="!f.homePage.errors?.required" class="invalidControl">
-                         {{'createcustomer.homePageIsRequired' | translate }} </div>
-                     </div>
+
                    </div>
                  </div>
 
@@ -194,10 +189,15 @@
                    <div class="form-group">
                      <div class="checkbox">
                        <input id="remember-1" formControlName="confirmData" type="checkbox">
-                       <label [ngClass]="(f.confirmData.invalid)?'invalidControl':''" for="remember-1"> Hiermit
+                       <label for="remember-1"> Hiermit
                          bestätige
                          ich, alle Daten korrekt eingegeben zu haben </label>
-
+                       <div
+                         *ngIf="(submitted && f.confirmData.invalid) ||(f.confirmData.dirty || f.confirmData.touched)">
+                         <div [hidden]="!f.confirmData.errors?.required" class="invalidControl">
+                           Please confirm by checking checkbox
+                         </div>
+                       </div>
                      </div>
                    </div>
                  </div>
